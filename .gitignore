@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Python wheel
+*.whl
+
+# Tests
+.pytest_cache/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Data, models, and intermediate outputs
+# Model files and scalers
+*.joblib
+*.pkl
+*.h5
+# Feature CSVs and exports
+extracted_features.csv
+features.csv
+
+# If you don't want to include your dataset in the repo, uncomment the following line
+# drum_dataset/
+
+# Large or temporary files
+*.wav.tmp
+*.cache
+test_file.wav
+test_file.mp3
+drums.wav
+drum_dataset/
+spectrogram_dataset/
+
+# Misc
+coverage.xml
+htmlcov/
+
+# Keep local config and secrets out
+config/*.local
+*.secret
+
+# End of .gitignore

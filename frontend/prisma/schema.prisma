@@ -1,0 +1,107 @@
+// -------------------------------------
+// 1. THE PRISMA ENGINE
+// -------------------------------------
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+// -------------------------------------
+// 2. THE CORE USER
+// -------------------------------------
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  
+  // Hashed password for manual logins (Optional because GitHub users won't have one)
+  password      String?   
+
+  // Monetization Hooks
+  tier          String    @default("FREE")
+  credits       Int       @default(5)
+  
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  tracks        Track[]   // One user can have many generated tracks
+}
+
+// -------------------------------------
+// 3. THE STORAGE VAULT (Deduplication Engine)
+// -------------------------------------
+model FileAsset {
+  id                  String   @id @default(cuid())
+  
+  // The SHA-256 signature of the original audio file
+  fileHash            String   @unique 
+  
+  // Supabase Cloud URLs
+  compressedAudioUrl  String   
+  midiUrl             String   
+  
+  createdAt           DateTime @default(now())
+  
+  // Relation: Many different user "Tracks" can point to this single FileAsset
+  tracks              Track[]  
+}
+
+// -------------------------------------
+// 4. THE DASHBOARD VIEW
+// -------------------------------------
+model Track {
+  id                String    @id @default(cuid())
+  originalFileName  String    // e.g., "Parichaye_Custom_Beat.wav"
+  
+  // Foreign Keys linking this Track to a User and a physical File
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  fileAssetId       String
+  fileAsset         FileAsset @relation(fields: [fileAssetId], references: [id], onDelete: Cascade)
+  
+  createdAt         DateTime  @default(now())
+}
+
+// -------------------------------------
+// 5. NEXTAUTH BOILERPLATE
+// Required for GitHub OAuth and JWT/Session management
+// -------------------------------------
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  @@unique([identifier, token])
+}
