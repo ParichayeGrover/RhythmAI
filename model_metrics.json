@@ -1,0 +1,41 @@
+{
+  "model_info": {
+    "type": "LogisticRegression",
+    "training_samples": 2616,
+    "test_samples": 654,
+    "total_samples": 3270,
+    "features_per_sample": 40,
+    "feature_source": "csv/features.csv"
+  },
+  "overall_metrics": {
+    "accuracy": 0.8730886850152905,
+    "accuracy_percentage": 87.30886850152905,
+    "precision": 0.8770971001475588,
+    "precision_percentage": 87.70971001475588,
+    "recall": 0.8730886850152905,
+    "recall_percentage": 87.30886850152905,
+    "f1_score": 0.8669200725750541,
+    "f1_score_percentage": 86.69200725750541
+  },
+  "confusion_matrix": [
+    [
+      93,
+      12,
+      48
+    ],
+    [
+      0,
+      246,
+      6
+    ],
+    [
+      11,
+      6,
+      232
+    ]
+  ],
+  "confusion_matrix_shape": [
+    3,
+    3
+  ]
+}

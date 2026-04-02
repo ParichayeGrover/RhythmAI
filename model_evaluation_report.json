@@ -1,0 +1,74 @@
+{
+  "model_info": {
+    "model_name": "Drum Classification CNN",
+    "architecture": "3-layer CNN (Conv2D + MaxPooling + Dense)",
+    "input_shape": [
+      128,
+      128,
+      3
+    ],
+    "total_samples": 300,
+    "classes": [
+      "hat",
+      "kick",
+      "snare"
+    ]
+  },
+  "overall_metrics": {
+    "accuracy": 0.92,
+    "accuracy_percent": 92.0,
+    "macro_precision": 0.9201120448179272,
+    "macro_precision_percent": 92.01120448179272,
+    "macro_recall": 0.92,
+    "macro_recall_percent": 92.0,
+    "macro_f1_score": 0.9199946661332801,
+    "macro_f1_score_percent": 91.99946661332801
+  },
+  "per_class_metrics": {
+    "hat": {
+      "precision": 0.9117647058823529,
+      "precision_percent": 91.17647058823529,
+      "recall": 0.93,
+      "recall_percent": 93.0,
+      "f1_score": 0.9207920792079208,
+      "f1_score_percent": 92.07920792079209
+    },
+    "kick": {
+      "precision": 0.92,
+      "precision_percent": 92.0,
+      "recall": 0.92,
+      "recall_percent": 92.0,
+      "f1_score": 0.92,
+      "f1_score_percent": 92.0
+    },
+    "snare": {
+      "precision": 0.9285714285714286,
+      "precision_percent": 92.85714285714286,
+      "recall": 0.91,
+      "recall_percent": 91.0,
+      "f1_score": 0.9191919191919192,
+      "f1_score_percent": 91.91919191919192
+    }
+  },
+  "confusion_matrix": [
+    [
+      93,
+      3,
+      4
+    ],
+    [
+      5,
+      92,
+      3
+    ],
+    [
+      4,
+      5,
+      91
+    ]
+  ],
+  "hashing_summary": {
+    "algorithm": "SHA-256",
+    "average_speed_improvement_percent": 99.5
+  }
+}

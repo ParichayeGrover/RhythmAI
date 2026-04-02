@@ -1,0 +1,91 @@
+{
+  "cnn_metrics": {
+    "model_path": "C:\\Users\\hp\\Desktop\\Projects\\AI Music Analyser\\ml_services\\drum_cnn_model.keras",
+    "labels": [
+      "hat",
+      "kick",
+      "snare"
+    ],
+    "class_indices": {
+      "hat": 0,
+      "kick": 1,
+      "snare": 2
+    },
+    "num_validation_samples": 653,
+    "overall": {
+      "accuracy": 0.9127105666156202,
+      "precision_weighted": 0.9129883478518297,
+      "recall_weighted": 0.9127105666156202,
+      "f1_weighted": 0.9128341452872014
+    },
+    "confusion_matrix": [
+      [
+        100,
+        1,
+        20
+      ],
+      [
+        2,
+        252,
+        6
+      ],
+      [
+        21,
+        7,
+        244
+      ]
+    ],
+    "classification_report": {
+      "hat": {
+        "precision": 0.8130081300813008,
+        "recall": 0.8264462809917356,
+        "f1-score": 0.819672131147541,
+        "support": 121.0
+      },
+      "kick": {
+        "precision": 0.9692307692307692,
+        "recall": 0.9692307692307692,
+        "f1-score": 0.9692307692307692,
+        "support": 260.0
+      },
+      "snare": {
+        "precision": 0.9037037037037037,
+        "recall": 0.8970588235294118,
+        "f1-score": 0.9003690036900369,
+        "support": 272.0
+      },
+      "accuracy": 0.9127105666156202,
+      "macro avg": {
+        "precision": 0.895314201005258,
+        "recall": 0.8975786245839722,
+        "f1-score": 0.8964239680227823,
+        "support": 653.0
+      },
+      "weighted avg": {
+        "precision": 0.9129883478518297,
+        "recall": 0.9127105666156202,
+        "f1-score": 0.9128341452872014,
+        "support": 653.0
+      }
+    }
+  },
+  "charts": {
+    "confusion_matrix_chart": "C:\\Users\\hp\\Desktop\\Projects\\AI Music Analyser\\cnn_confusion_matrix.png",
+    "metrics_chart": "C:\\Users\\hp\\Desktop\\Projects\\AI Music Analyser\\cnn_metrics_overview.png",
+    "per_class_chart": "C:\\Users\\hp\\Desktop\\Projects\\AI Music Analyser\\cnn_per_class_metrics.png"
+  },
+  "hashing_benchmark": {
+    "benchmark_audio_file": "C:\\Users\\hp\\Desktop\\Projects\\AI Music Analyser\\drum_dataset\\snare\\351028.wav",
+    "avg_hash_ms": 0.010246666666624549,
+    "avg_lookup_ms": 0.00023333333345476603,
+    "avg_no_cache_model_call_ms": 1255.6081200000006,
+    "avg_cache_hit_request_ms": 0.00911099999992615,
+    "speedup_percent": 99.99927437551138,
+    "speedup_factor": 137812.32795633608,
+    "notes": [
+      "No-cache timing includes onset detection, spectrogram generation, CNN inference, and MIDI write.",
+      "Cache-hit timing includes SHA-256 computation and dictionary cache lookup only.",
+      "Benchmark executed on local development machine and should be treated as environment-specific."
+    ]
+  }
+}
