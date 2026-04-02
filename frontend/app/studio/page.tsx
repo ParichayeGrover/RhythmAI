@@ -111,23 +111,23 @@ export default function Studio() {
 
     return (
         <main className="app-container">
-            <div className="w-full max-w-3xl mx-auto flex flex-col items-center gap-10">
+            <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8 md:gap-10">
                 
                 {/* Header Section */}
                 <div className="text-center space-y-4">
-                    <h1 className="ui-title text-4xl md:text-5xl">
+                    <h1 className="ui-title text-3xl sm:text-4xl md:text-5xl">
                         The <span className="ui-gradient">Studio</span>
                     </h1>
-                    <p className="ui-muted text-base md:text-lg">
+                    <p className="ui-muted text-sm sm:text-base md:text-lg">
                         {session?.user?.name ? `${session.user.name}, initialize` : "Initialize"} the neural network with a raw drum loop.
                     </p>
                 </div>
 
                 {/* The Glassmorphism Console */}
-                <div className="glass-panel w-full p-8 md:p-12 rounded-4xl shadow-2xl flex flex-col items-center gap-8 relative overflow-hidden">
+                <div className="glass-panel ui-card-hover relative flex w-full flex-col items-center gap-6 overflow-hidden rounded-3xl p-5 shadow-2xl sm:p-7 md:gap-8 md:p-12">
                     
                     {/* Subtle inner glow */}
-                    <div className="absolute inset-0 bg-linear-to-b from-white/2 to-transparent pointer-events-none"></div>
+                    <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-white/5 to-transparent"></div>
 
                     {/* The Drag & Drop Zone */}
                     <div 
@@ -136,10 +136,10 @@ export default function Studio() {
                         onDragOver={handleDrag}
                         onDrop={handleDrop}
                         onClick={() => inputRef.current?.click()}
-                        className={`relative w-full h-48 rounded-3xl border-2 border-dashed flex flex-col items-center justify-center transition-all duration-300 cursor-pointer group ${
+                        className={`group relative flex h-44 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed transition-all duration-300 md:h-48 ${
                             dragActive 
-                                ? "border-purple-500 bg-purple-500/10 scale-[1.02]" // Active hover state
-                                : "border-neutral-700 hover:border-neutral-500 bg-black/50" // Idle state
+                                ? "scale-[1.02] border-cyan-400 bg-cyan-400/10"
+                                : "border-slate-600/80 bg-black/45 hover:border-slate-400"
                         }`}
                     >
                         {/* Hidden input - triggered by the onClick of the parent div */}
@@ -159,17 +159,17 @@ export default function Studio() {
                                     <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mb-2">
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                     </div>
-                                    <p className="text-white font-medium text-lg">{file.name}</p>
-                                    <p className="text-neutral-500 text-sm">{(file.size / 1024 / 1024).toFixed(2)} MB • Click to replace</p>
+                                    <p className="max-w-[90%] truncate text-lg font-medium text-white">{file.name}</p>
+                                    <p className="text-sm text-slate-400">{(file.size / 1024 / 1024).toFixed(2)} MB • Click to replace</p>
                                 </>
                             ) : (
                                 <>
                                     {/* Upload Icon */}
-                                    <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 transition-colors ${dragActive ? "bg-purple-500 text-white" : "bg-white/5 text-neutral-400 group-hover:bg-white/10 group-hover:text-white"}`}>
+                                    <div className={`mb-2 flex h-14 w-14 items-center justify-center rounded-full transition-colors ${dragActive ? "bg-cyan-500 text-white" : "bg-white/5 text-slate-400 group-hover:bg-white/10 group-hover:text-white"}`}>
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                     </div>
-                                    <p className="text-neutral-300 font-medium text-lg">Drag & Drop audio here</p>
-                                    <p className="text-neutral-600 text-sm">Supports WAV, MP3, AIFF</p>
+                                    <p className="text-lg font-medium text-slate-200">Drag and drop audio here</p>
+                                    <p className="text-sm text-slate-500">Supports WAV, MP3, AIFF</p>
                                 </>
                             )}
                         </div>
@@ -177,10 +177,10 @@ export default function Studio() {
 
                     {/* Stylized Audio Player Wrapper */}
                     {audioURL && (
-                        <div className="w-full bg-black/60 p-4 rounded-2xl border border-white/5 shadow-inner">
-                            <div className="flex items-center gap-4 mb-2 px-2">
-                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                                <span className="text-xs text-neutral-400 font-mono tracking-wider">AUDIO_INPUT_STREAM</span>
+                        <div className="w-full rounded-2xl border border-white/10 bg-black/60 p-4 shadow-inner">
+                            <div className="mb-2 flex items-center gap-4 px-2">
+                                <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-400"></div>
+                                <span className="font-mono text-xs tracking-wider text-slate-400">AUDIO_INPUT_STREAM</span>
                             </div>
                             <audio controls src={audioURL} className="w-full h-12 outline-none opacity-80 hover:opacity-100 transition-opacity [&::-webkit-media-controls-panel]:bg-neutral-900 [&::-webkit-media-controls-current-time-display]:text-white [&::-webkit-media-controls-time-remaining-display]:text-white" />
                         </div>
@@ -192,7 +192,7 @@ export default function Studio() {
                             <button
                                 onClick={handleUpload}
                                 disabled={!file || isUploading}
-                                className="w-full relative px-8 py-5 bg-white text-black font-bold text-lg rounded-2xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-200 hover:scale-[1.02] transition-all active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+                                className="ui-focus relative w-full rounded-2xl bg-white px-8 py-4 text-base font-bold text-black shadow-[0_0_40px_rgba(255,255,255,0.1)] transition-all hover:scale-[1.02] hover:bg-neutral-200 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 md:py-5 md:text-lg"
                             >
                                 {isUploading ? (
                                     <span className="flex items-center justify-center gap-3">
@@ -204,15 +204,15 @@ export default function Studio() {
                                 )}
                             </button>
                         ) : (
-                            <div className="w-full space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                                <div className="flex items-center justify-center gap-2 text-green-400 text-sm font-medium tracking-wide">
+                            <div className="fade-up w-full space-y-4">
+                                <div className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-emerald-400">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     MIDI Synthesized Successfully
                                 </div>
                                 <a
                                     href={midiUrl}
                                     download="RhythmAI_Bassline.mid"
-                                    className="flex items-center justify-center gap-3 w-full px-8 py-5 bg-linear-to-r from-purple-600 to-indigo-600 text-white font-bold text-lg rounded-2xl hover:shadow-[0_0_30px_rgba(147,51,234,0.4)] hover:scale-[1.02] active:scale-95 transition-all"
+                                    className="ui-focus flex w-full items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-sky-500 to-cyan-500 px-8 py-4 text-base font-bold text-white transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] active:scale-95 md:py-5 md:text-lg"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                     Download MIDI File

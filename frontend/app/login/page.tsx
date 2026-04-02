@@ -31,11 +31,11 @@ export default function LoginPage() {
 
   return (
     <main className="app-container">
-      <div className="mx-auto max-w-md glass-panel px-6 py-8 sm:px-10 sm:py-10">
-        <h2 className="ui-title text-center text-3xl">
+      <div className="mx-auto max-w-md glass-panel ui-card-hover px-5 py-7 sm:px-10 sm:py-10">
+        <h2 className="ui-title text-center text-2xl sm:text-3xl">
           Sign in to Rhythm<span className="ui-gradient">AI</span>
         </h2>
-        <p className="ui-muted mt-2 text-center text-sm">
+        <p className="ui-muted mt-2 text-center text-sm leading-relaxed">
           Or{" "}
           <Link href="/signup" className="font-medium text-cyan-300 hover:text-cyan-200 transition-colors">
             create a new account
@@ -51,7 +51,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border border-slate-600/80 bg-slate-950/80 px-3 py-2 text-white placeholder-neutral-500 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="ui-focus block w-full rounded-lg border border-slate-500/70 bg-slate-950/75 px-3 py-2.5 text-white placeholder-slate-500"
                   placeholder="parichaye@example.com"
                 />
               </div>
@@ -65,7 +65,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border border-slate-600/80 bg-slate-950/80 px-3 py-2 text-white placeholder-neutral-500 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="ui-focus block w-full rounded-lg border border-slate-500/70 bg-slate-950/75 px-3 py-2.5 text-white placeholder-slate-500"
                   placeholder="••••••••"
                 />
               </div>
@@ -74,7 +74,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200 disabled:opacity-50"
+              className="ui-focus w-full rounded-lg bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.01] hover:bg-slate-200 disabled:opacity-50"
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </button>

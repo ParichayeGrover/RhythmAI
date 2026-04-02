@@ -20,7 +20,10 @@ function getSupabaseAdminClient() {
   return createClient(supabaseUrl, serviceRoleKey);
 }
 
-async function ensureBucketExists(supabase: ReturnType<typeof createClient>, bucketName: string) {
+async function ensureBucketExists(
+  supabase: ReturnType<typeof getSupabaseAdminClient>,
+  bucketName: string
+) {
   const { data: existingBucket, error: getBucketError } = await supabase.storage.getBucket(bucketName);
 
   if (!getBucketError && existingBucket) {
@@ -43,7 +46,9 @@ async function generateMidiWithPython(
   contentType?: string
 ) {
   const pythonFormData = new FormData();
-  const blob = new Blob([buffer], { type: contentType || "application/octet-stream" });
+  const blob = new Blob([new Uint8Array(buffer)], {
+    type: contentType || "application/octet-stream",
+  });
   pythonFormData.append("file", blob, fileName);
 
   const pythonResponse = await fetch(pythonBasslineUrl, {
